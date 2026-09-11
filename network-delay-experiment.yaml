@@ -1,0 +1,15 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: egress-latency-chaos
+spec:
+  action: delay
+  mode: one
+  selector:
+    namespaces: [production]
+    labelSelectors:
+      app: order-service
+  delay:
+    latency: '150ms'
+    jitter: '20ms'
+  duration: '5m'
